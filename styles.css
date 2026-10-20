@@ -1,0 +1,12 @@
+*, 
+*::before, 
+*::after {
+  box-sizing: border-box; /* Ensures padding doesn't affect overall element width */
+  margin: 0;
+  padding: 0;
+}
+
+#page-container {
+    min-height: 100vh;
+    background-color: cornflowerblue;
+}
