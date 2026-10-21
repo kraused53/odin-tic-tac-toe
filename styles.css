@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Space+Mono&display=swap');
+
 *, 
 *::before, 
 *::after {
@@ -6,7 +8,240 @@
   padding: 0;
 }
 
+:root {
+  --header-background: rebeccapurple;
+  --board-background: rgba(176,196,222,0.9);
+  --border-color: darkslategray;
+
+  font-family: Orbitron;
+}
+
 #page-container {
     min-height: 100vh;
-    background-color: cornflowerblue;
+    
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem;
+
+  background-color: var(--header-background);
+  border-bottom: 0.5rem solid var(--border-color);
+}
+
+header svg {
+  height: 3rem;
+}
+
+header h1 {
+  font-size: 3rem;
+}
+
+main {
+  background-image: url("./images/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  display: grid;
+  justify-content: center;
+
+  grid-template-columns: minmax(15rem, 20rem) minmax(0, 1fr);
+  gap: 3rem;
+  padding: 5rem;
+
+  align-items: start;
+}
+
+#left-pane {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+#message {
+  background-color: var(--board-background);
+  border: 0.25rem solid var(--border-color);
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+#message > p {
+  color: darkgreen;
+  font-size: 1rem;
+  margin-top: 1rem;
+  max-width: 50rem;
+}
+
+#right-pane {
+  background: var(--board-background);
+  border: 1rem solid var(--border-color);
+  border-radius: 1rem;
+
+  display: grid;
+  grid-template-rows: 1fr auto;
+  justify-items: center;
+  align-items: center;
+
+  padding: 2rem;
+  gap: 2rem;
+}
+
+#board {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+
+  width: 100%;
+  max-width: 35rem;
+  aspect-ratio: 1 / 1;
+
+  margin: auto;
+}
+
+.cell {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    font-size: 5rem;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+#controls {
+  display: grid;
+  gap: 2rem;
+
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+
+  padding: 2rem;
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+}
+
+.control {
+  height: 2rem;
+}
+
+#reset-button {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+}
+
+#name-button {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+
+#log {
+  grid-column: 1 / 3;
+  grid-row: 2 / 3;
+  text-align: center;
+  padding: 5px;
+  border: 1px solid var(--border-color);
+}
+
+/* Name editor dialog */
+#name-dialog {
+    margin: auto;
+    padding: 2rem;
+
+    width: min(90vw, 28rem);
+
+    background-color: var(--board-background);
+    border: 0.35rem solid var(--border-color);
+    border-radius: 1rem;
+
+    color: black;
+}
+
+#name-dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+}
+
+#name-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+#name-form h2 {
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-field label {
+    font-size: 0.9rem;
+}
+
+.form-field input {
+    width: 100%;
+    padding: 0.75rem;
+
+    font-family: inherit;
+    font-size: 1rem;
+
+    border: 2px solid var(--border-color);
+    border-radius: 0.5rem;
+    background-color: white;
+}
+
+.form-field input:focus {
+    outline: 2px solid rebeccapurple;
+    outline-offset: 2px;
+}
+
+.dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.dialog-actions button {
+    padding: 0.75rem 1rem;
+
+    font-family: inherit;
+    cursor: pointer;
+
+    border: 2px solid var(--border-color);
+    border-radius: 0.5rem;
+}
+
+.dialog-actions button[type="submit"] {
+    background-color: rebeccapurple;
+    color: white;
+}
+
+.dialog-actions button:hover {
+    filter: brightness(1.15);
+}
+
+@media (max-width: 800px) {
+  main {
+    grid-template-columns: 1fr;
+    padding: 4rem;
+    gap: 1rem;
+  }
+
+  #right-pane {
+    padding: 1rem;
+    border-width: 0.5rem;
+  }
+
+  #board {
+    max-width: 25rem;
+  }
 }
